@@ -13,11 +13,11 @@ const Header = () => {
 
     </p>
 
-    <div>
-    <img src={assets.group_profiles} alt="" />        
+    <div className='flex flex-col md:flex-row text-light text-white items-center text-sm gap-3 '>
+    <img className='w-28' src={assets.group_profiles} alt="" />        
     <p>Add Descriptoin here </p>
     </div>
-    <a href="">Book Appointment <img src={assets.arrow_icon} alt="" /></a>
+    <a className='flex items-center rounded-full text-gray-600 bg-white hover:scale-105 transition-all duration-300 py-3 px-8 text-light text-sm gap-2 ' href="#speciality">Book Appointment <img src={assets.arrow_icon} alt="" /></a>
       </div>
 
       {/* right side */}
