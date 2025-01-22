@@ -14,7 +14,10 @@ const TopDoctors = () => {
         {doctors.slice(0,10).map((item,index)=>{
             return(
                 // aa nathi samjanu kai rite grid use kari ne e tailwind config file ma jaine kaik karyu che joie lje 
-                <div onClick={()=>navigate(`/appointment/${item._id}`)} className='border border-blue-200 rounded-xl cursor-pointer overflow-hidden hover:translate-y-[-10px] transition-all duration-500' key={index}>
+                <div onClick={()=>{navigate(`/appointment/${item._id}`);
+                    scrollTo(0,0);
+                 }} className='border border-blue-200 rounded-xl cursor-pointer overflow-hidden hover:translate-y-[-10px] transition-all duration-500' key={index}>
+
                     <img className='bg-blue-50 ' src={item.image} alt="" />
                     <div className='p-4'>
                         <div className='flex items-center gap-2 text-sm text-center text-green-500'>
