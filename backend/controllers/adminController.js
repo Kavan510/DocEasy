@@ -64,10 +64,10 @@ console.log("Error is occuring in admin controller"+e);
 
 //API for the admin login
 
-
 const loginAdmin = async (req,res)=>{
     try{
-
+        console.log("from backend")
+        console.log(req)
         const {email,password} = req.body
         if(email===process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
 
@@ -93,4 +93,23 @@ const loginAdmin = async (req,res)=>{
 
 }
 
-export {addDoctor,loginAdmin}
+//APi to get all doctors list for admin panel
+const allDoctors = async (req, res) => {
+    try {
+        const doctors = await doctorModel.find({}).select('-password'); // Fetch all doctors, excluding passwords
+
+        res.status(200).json({  // Add a status code and proper response format
+            success:true,
+            doctors,
+        });
+    } catch (e) {
+        console.error("Error in admin controller: ", e);
+
+        res.status(500).json({  // Respond with a 500 status for errors
+            success: false,
+            message: "An error occurred while fetching doctors",
+        });
+    }
+};
+
+export {addDoctor,loginAdmin,allDoctors}

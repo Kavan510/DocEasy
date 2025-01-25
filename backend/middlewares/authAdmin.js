@@ -17,6 +17,7 @@ const authAdmin = async (req, res, next) => {
             msg: "Not authorized, login Again",
           });
     }
+    
     next()
 
   } catch (e) {
