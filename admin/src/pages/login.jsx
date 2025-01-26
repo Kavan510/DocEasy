@@ -3,13 +3,14 @@ import {assets} from '../assets/assets.js'
 import { AdminContext } from '../context/adminContext.jsx'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { DoctorContext } from '../context/doctorContext.jsx'
 
 const Login = () => {
     const [state,setState]= useState('Admin')
     const {setAToken,backendUrl} =useContext(AdminContext)
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-
+    const {dtoken,setdToken} = useContext(DoctorContext)
     // console.log("backend url is:"+backendUrl)
 
     const onSubmitHandler = async (event) => {
@@ -24,6 +25,16 @@ const Login = () => {
             if (data.token) {
                 localStorage.setItem('atoken',data.token)
               setAToken(data.token);
+            } else {
+              toast.error("Incorrect Credentials")
+            }
+          }
+          else{
+            const { data } = await axios.post(backendUrl+'/api/doctor/login', { email, password });
+      
+            if (data.token) {
+                localStorage.setItem('dtoken',data.token)
+              setdToken(data.token);
             } else {
               toast.error("Incorrect Credentials")
             }

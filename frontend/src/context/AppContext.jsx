@@ -22,7 +22,6 @@ const AppContextProvider = (props)=>{
 
             const {data} = await axios.get(backendUrl+'/api/doctor/list')
             if(data){
-
                 console.log(data)
                 setDoctors(data.doctors)
             }else{
@@ -41,31 +40,28 @@ toast.error(e.message)
     },[])
 
 
-     const loadUserProfileData = async ()=>{
-        try{
-const {data}= await axios.get(backendUrl+'/api/admin/get-profile',{headers:{token}})
-console.log(data)
-if(data.success){
-    setUserData(data.userData)
-
-}else{
-    toast.error(data.msg);
-}
-
-
-
+const loadUserProfileData = async () => {
+        try {
+            const { data } = await axios.get(backendUrl+'/api/user/get-profile', {
+                headers: { token },
+            });
+            console.log(data);
+            if (data.success) {
+                setUserData(data.data);
+            } else {
+                toast.error(data.msg || "Failed to fetch profile");
+            }
+        } catch (e) {
+            console.log(e);
+            toast.error(e.message || "An error occurred while fetching profile data");
         }
-        catch(e){
-console.log(e)
-toast.error(e.message)
-        }
-     }
+    };
+    
 
 useEffect(()=>{
 
     if(token){
         loadUserProfileData();
-
     }
     else{
         setUserData(false)
@@ -74,7 +70,8 @@ useEffect(()=>{
 },[token])
 
     const value= {
-        doctors,currencySymbol,
+
+        doctors,getDoctorsData,currencySymbol,
        token,setToken,backendUrl,
        userData,setUserData,loadUserProfileData
 

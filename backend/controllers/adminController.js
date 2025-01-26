@@ -3,8 +3,10 @@ import bcrypt from 'bcrypt'
 import {v2 as cloudinary} from 'cloudinary'
 import doctorModel from '../models/doctorModel.js' 
 import jwt  from 'jsonwebtoken'
-//API for adding doctor
+import appointmentModel from '../models/appointmentModel.js'
+import userModel from '../models/userModel.js'
 
+//API for adding doctor
 
 const addDoctor=async (req,res)=>{
     try{
@@ -112,4 +114,79 @@ const allDoctors = async (req, res) => {
     }
 };
 
-export {addDoctor,loginAdmin,allDoctors}
+
+//API to get all appointment list
+
+const appointmentsAdmin = async (req,res)=>{
+    try{
+
+const appointments = await appointmentModel.find({})
+res.json({success:true,appointments})
+
+    }
+    catch(e){
+        console.log(e)
+        res.json({success:false,e})
+    }
+}
+
+//API for appointment cancellation
+
+const appointmentCancel = async (req,res)=>{
+    try{
+    const {appointmentId} = req.body
+    
+    const appointmentData = await appointmentModel.findById(appointmentId)
+    
+   
+    
+    await appointmentModel.findByIdAndUpdate(appointmentId,{cancelled:true})
+    // releasing doctor's slot
+    
+    const {docId,slotDate,slotTime}= appointmentData
+    const doctorData = await doctorModel.findById(docId)
+    let slots_booked = doctorData.slots_booked;
+    slots_booked[slotDate] = slots_booked[slotDate].filter(slot=>slot!=slotTime)
+    await doctorModel.findByIdAndUpdate(docId,{slots_booked})
+    
+    res.json({success:true,msg:"appointment cancelled"})
+    
+    }
+    catch(e){
+        console.log(e);
+        res.json({success:false,msg:e})
+        
+    }
+    
+     }
+    
+//API for dashboard for admin panel
+
+
+const adminDashboard = async (req,res)=>{
+    try{
+const doctors  = await doctorModel.find({})
+
+const users = await userModel.find({})
+const appointments  = await appointmentModel.find({})
+
+
+const dashData = {
+    doctors:doctors.length,
+    appointments:appointments.length,
+    patients:users.length,
+    latestAppointments : appointments.reverse().slice(0,5)
+}
+
+res.json({success:true,dashData})
+
+    }
+    catch(e){
+        console.log(e)
+        res.json({success:false,msg:"Error in dashboard fetching"})
+    }
+}
+
+
+
+export {addDoctor,adminDashboard,loginAdmin,allDoctors,appointmentCancel,appointmentsAdmin}
