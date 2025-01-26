@@ -24,7 +24,8 @@ const Login = () => {
       
             if (data.token) {
                 localStorage.setItem('atoken',data.token)
-              setAToken(data.token);
+                setAToken(data.token);
+                
             } else {
               toast.error("Incorrect Credentials")
             }
