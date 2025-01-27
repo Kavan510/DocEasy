@@ -14,7 +14,6 @@ DocEasy is a simple and intuitive doctor appointment booking platform designed t
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/DocEasy.git
 
 # Navigate to the project directory
 cd DocEasy
