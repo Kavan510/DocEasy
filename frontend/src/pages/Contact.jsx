@@ -19,15 +19,15 @@ const Contact = () => {
               </p>
             </div>
           <div className='pb-5'> 
-            <p>364313, Monpur</p>
-            <p>Vallabhipur,Bhavanagar</p>
+            <p>394101, Mota Varachha</p>
+            <p>Surat, Gujarat</p>
           </div>
           <div className='pb-5'>
             <p>
-              Tel:9512101251
+              Tel: 2084422881
               
             </p>
-            <p>Email:kavankk@gmail.com</p>
+            <p>Email: doctor_bvn@gmail.com</p>
 
           </div>
           <div className='pb-4'>

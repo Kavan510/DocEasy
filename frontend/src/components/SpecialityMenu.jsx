@@ -5,7 +5,7 @@ const SpecialityMenu = () => {
   return (
     <div className='flex flex-col items-center gap-4 py-16 text-gray-800' id='speciality'>
         <h1 className='text-3xl font-medium'>Find by Speciality</h1>
-        <p className='w-1/3 text-center text-sm'>Some random text</p>
+        <p className='w-1/3 text-center text-sm'>Explore a wide range of experienced doctors across various specialties, all in one place.</p>
         <div className='flex sm:justify-center gap-4 pt-5 w-full overflow-scroll'>
 
 {

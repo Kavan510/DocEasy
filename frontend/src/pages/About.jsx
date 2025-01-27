@@ -18,23 +18,28 @@ const About = () => {
         />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-sm text-gray-600 ">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-            molestiae ut nemo necessitatibus, deleniti ratione possimus quasi
-            cumque sint doloremque, iusto reprehenderit, autem aspernatur?
-            Consequatur tempora eos non. Quos, vero.
+            At DocEasy, we believe that accessing quality healthcare should be
+            simple, seamless, and stress-free. Founded with a mission to
+            transform the way people connect with medical professionals, our
+            platform bridges the gap between patients and doctors, ensuring
+            timely appointments. Whether you’re looking for a
+            general physician or a specialist, DocEasy is your trusted partner
+            in finding the right healthcare provider quickly and efficiently.
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam id
-            mollitia voluptatibus repellat sunt! Laboriosam rerum vero
-            repudiandae quo! Modi iure unde neque est excepturi tempore rerum?
-            Rerum, molestias obcaecati?
+            We are committed to empowering patients with the tools to make
+            informed decisions about their health while supporting doctors with
+            a streamlined appointment management system.
           </p>
           <b className="text-gray-800 ">Our Vision</b>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-            dignissimos ullam dolorum ut magni, nihil, eos enim numquam ea
-            temporibus doloribus ipsam adipisci, necessitatibus veniam quam
-            molestiae minus consectetur vel.
+            Our vision is to create a world where healthcare is accessible to
+            everyone, regardless of location or time. By leveraging technology,
+            we aim to eliminate the barriers between patients and doctors,
+            fostering a healthier and more connected society. We envision
+            DocEasy as a global leader in healthcare solutions, setting a new
+            standard for convenience, reliability, and trust in medical
+            services. 
           </p>
         </div>
       </div>
