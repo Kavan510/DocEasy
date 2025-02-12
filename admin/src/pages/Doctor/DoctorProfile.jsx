@@ -146,7 +146,7 @@ const DoctorProfile = () => {
           <input
             type="checkbox"
             id="availability"
-            className="w-4 h-4"
+            className="w-4 h-4 cursor-pointer"
             onChange={() =>
               isEdit &&
               setProfileData((prev) => ({
@@ -156,7 +156,7 @@ const DoctorProfile = () => {
             }
             checked={profileData.available}
           />
-          <label htmlFor="availability" className="text-gray-800">
+          <label htmlFor="availability" className="text-gray-800 ">
             Available
           </label>
         </div>

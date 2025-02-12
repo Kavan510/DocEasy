@@ -30,7 +30,7 @@ const DoctorsList = () => {
                 <div className="mt-2 flex items-center gap-1 text-sm">
                   {/* Ensure proper handling of availability toggle */}
                   <input
-                  
+                    className='cursor-pointer'
                     onChange={() => changeAvailibility(item._id)} // Call the API function when toggling
                     type="checkbox"
                     checked={item.available || false} // Ensure default boolean value
