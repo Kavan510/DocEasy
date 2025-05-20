@@ -4,10 +4,57 @@
 
 DocEasy is a simple and intuitive doctor appointment booking platform designed to connect patients with trusted healthcare providers effortlessly.
 
-## Features  
-- Book appointments quickly and easily.  
-- Browse and explore specialists across various fields.  
-- Access detailed doctor profiles and patient reviews.  
+## 🌟 Features
+
+### 👤 Role-Based Authentication
+- 🧑‍⚕️ **Patients**
+  - Register and log in securely.
+  - Search doctors by specialization.
+  - Book appointments with selected doctors.
+  - Manage and view appointment history.
+
+- 🩺 **Doctors**
+  - Secure login and dashboard access.
+  - View booked appointments.
+  - Track earnings and manage profile details.
+  - Accept or reject appointment requests.
+
+- 🛠️ **Admins**
+  - Access to admin dashboard.
+  - Manage doctor approvals and user accounts.
+  - View and control all appointments in the system.
+
+---
+
+### 📅 Appointment Booking System
+- Fully functional scheduling system.
+- Patients choose time slots based on doctor availability.
+- Doctors receive real-time booking updates.
+- Appointment status tracking: pending, confirmed, completed.
+
+---
+
+### 💳 Payment Integration
+- Integrated payment gateway (e.g., Razorpay).
+- Patients can pay consultation fees securely.
+- Backend verifies transactions and updates appointment status.
+
+---
+
+### 📊 Dashboard & Analytics
+- 📍 Role-specific dashboards:
+  - Patients: Upcoming and past appointments.
+  - Doctors: Booking stats and earnings.
+  - Admin: System-wide stats and control panels.
+- Responsive design works across all devices.
+
+---
+
+### 🛡️ Additional Features
+- 🔐 JWT-based Authentication & Authorization.
+- 📁 MongoDB for persistent and scalable data storage.
+- 🌐 RESTful APIs built with Node.js & Express.js.
+
 
 
 ## How to Run  
