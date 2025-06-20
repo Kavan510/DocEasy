@@ -13,6 +13,8 @@ const AppContextProvider = (props)=>{
     const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token') : '')
     const [userData,setUserData] = useState(false)
 
+    const [loading,setLoading] = useState(false);
+
     
 
 
@@ -36,7 +38,16 @@ toast.error(e.message)
     }
 
     useEffect(()=>{
+
+        console.log(
+            "hello"
+        )
+        setLoading(true);
         getDoctorsData()
+        setLoading(false)
+        console.log(
+            "bye"
+        )
     },[])
 
 
@@ -59,7 +70,7 @@ const loadUserProfileData = async () => {
     
 
 useEffect(()=>{
-
+setLoading(true)
     if(token){
         loadUserProfileData();
     }
@@ -67,19 +78,28 @@ useEffect(()=>{
         setUserData(false)
 
     }
+    setLoading(false);
 },[token])
 
     const value= {
-
         doctors,getDoctorsData,currencySymbol,
        token,setToken,backendUrl,
-       userData,setUserData,loadUserProfileData
+       userData,setUserData,loadUserProfileData,loading,setLoading
 
     }
     return(
-        <AppContext.Provider value={value}>
-            {props.children}
-        </AppContext.Provider>
+<>
+            {loading ? (
+                <div className="h-screen bg-red-500">
+                    <p>Loading...</p>
+                </div>
+            ) : (
+                <AppContext.Provider value={value}>
+                    {props.children}
+                </AppContext.Provider>
+            )}
+        </>
+       
     )
 }
 

@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext";
 const Doctors = () => {
   const navigate = useNavigate();
   const { speciality } = useParams();
-  const { doctors } = useContext(AppContext);
+  const { doctors ,loading,setLoading} = useContext(AppContext);
   const [filterDoc, setFilterDoc] = useState([]);
   const [showFilter,setShowFilter] = useState(false);
 
@@ -18,7 +18,9 @@ const Doctors = () => {
   };
 
   useEffect(() => {
+    setLoading(true)
     applyFilter();
+    setLoading(false)
   }, [doctors, speciality]);
 
   return (
