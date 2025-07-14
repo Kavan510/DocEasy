@@ -228,7 +228,7 @@ catch(e){
  const listAppointment = async (req,res)=>{
     try{
 const {userId} = req.body;
-console.log(userId);
+// console.log(userId);
 
         const appointments = await appointmentModel.find({userId})
 

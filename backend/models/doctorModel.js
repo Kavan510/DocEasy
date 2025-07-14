@@ -20,6 +20,5 @@ const doctorSchema = new mongoose.Schema({
 },{minimize:false}) // to use empty object in default in value
 
 const doctorModel =  mongoose.models.doctor ||  mongoose.model('doctor',doctorSchema) 
-//unserstand above line 
 
 export  default doctorModel
