@@ -186,7 +186,23 @@ res.json({success:true,dashData})
         res.json({success:false,msg:"Error in dashboard fetching"})
     }
 }
+const removeDoctor = async (req, res) => {
+  try {
+    const docId = req.params.id;
+    console.log("Deleting docId:", docId);
 
+    const status = await doctorModel.deleteOne({ _id: docId });
 
-
-export {addDoctor,adminDashboard,loginAdmin,allDoctors,appointmentCancel,appointmentsAdmin}
+    console.log(status);
+    
+    res.json({
+      success: true,
+      msg: "Successfully removed doctor",
+      id: docId,
+    });
+  } catch (e) {
+    console.log("Error in remove doc:", e);
+    res.status(500).json({ success: false, msg: e.message });
+  }
+};
+export {addDoctor,adminDashboard,loginAdmin,allDoctors,appointmentCancel,appointmentsAdmin,removeDoctor}
