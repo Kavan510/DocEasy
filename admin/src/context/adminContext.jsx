@@ -91,7 +91,7 @@ const {data} = await axios.get(backendUrl+'/api/admin/dashboard',{headers:{atoke
 
 if(data.success){   
     setDashData(data.dashData)
-    console.log(data.dashData);
+    // console.log(data.dashData);
 
 }
 else{

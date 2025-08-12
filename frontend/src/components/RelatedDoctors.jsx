@@ -24,11 +24,9 @@ const RelatedDoctors = ({docId,speciality}) => {
         <h1 className='text-3xl font-medium '> Related Doctors</h1>
         <p className='sm:w-1/3 text-center text-sm'> Some informative text</p>
         <div className='w-full grid grid-cols-auto gap-4 pt-4 gap-y-6 px-3 sm:px-0'>
-{/* upr ni line nathi samjani tw css prop nathi samjani */}
          
         {relDoc.slice(0,5).map((item,index)=>{
             return(
-                // aa nathi samjanu kai rite grid use kari ne e tailwind config file ma jaine kaik karyu che joie lje 
                 <div onClick={()=>{
                     navigate(`/appointment/${item._id}`);
                     scrollTo(0,0,);
@@ -53,7 +51,7 @@ const RelatedDoctors = ({docId,speciality}) => {
         onClick={()=>{
             navigate('/doctors'); scrollTo(0,0);
         }} 
-        className='bg-blue-50 text-gray-600 px-12 py-3 rounded-full my-10 hover:scale-105 duration-500 '>More</button>
+        className='bg-primary text-white px-12 py-3 rounded-full my-10 hover:scale-105 duration-500 '>More</button>
     </div>
     </div>
   )

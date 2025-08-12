@@ -5,9 +5,9 @@ import { AppContext } from "../context/AppContext";
 const Doctors = () => {
   const navigate = useNavigate();
   const { speciality } = useParams();
-  const { doctors ,loading,setLoading} = useContext(AppContext);
+  const { doctors, loading, setLoading } = useContext(AppContext);
   const [filterDoc, setFilterDoc] = useState([]);
-  const [showFilter,setShowFilter] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
 
   const applyFilter = () => {
     if (speciality) {
@@ -18,84 +18,89 @@ const Doctors = () => {
   };
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     applyFilter();
-    setLoading(false)
+    setLoading(false);
   }, [doctors, speciality]);
 
   return (
-    <div>
-      <p className="text-gray-600">Browse through the doctors' specialties</p>
-      <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
-        <button onClick={()=>{setShowFilter(prev=>!prev)}} className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${showFilter ? 'bg-primary text-white' :''} `} >Filters</button>
-        <div className={`flex-col gap-4 text-sm text-gray-600 ${showFilter ? 'flex ' : 'hidden sm:flex '}`}>
-          <p
-            onClick={() => navigate("/doctors/General physician")}
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600 rounded transition-all cursor-pointer ${
-              speciality === "General physician" ? "bg-indigo-100 text-black" : ""
-            }`}
-          >
-            General Physician
-          </p>
-          <p
-            onClick={() => navigate("/doctors/Gynecologist")}
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600 rounded transition-all cursor-pointer ${
-              speciality === "Gynecologist" ? "bg-indigo-100 text-black" : ""
-            }`}
-          >
-            Gynecologist
-          </p>
-          <p
-            onClick={() => navigate("/doctors/Dermatologist")}
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600 rounded transition-all cursor-pointer ${
-              speciality === "Dermatologist" ? "bg-indigo-100 text-black" : ""
-            }`}
-          >
-            Dermatologist
-          </p>
-          <p
-            onClick={() => navigate("/doctors/Pediatricians")}
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600 rounded transition-all cursor-pointer ${
-              speciality === "Pediatricians" ? "bg-indigo-100 text-black" : ""
-            }`}
-          >
-            Pediatricians
-          </p>
-          <p
-            onClick={() => navigate("/doctors/Neurologist")}
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600 rounded transition-all cursor-pointer ${
-              speciality === "Neurologist" ? "bg-indigo-100 text-black" : ""
-            }`}
-          >
-            Neurologist
-          </p>
-          <p
-            onClick={() => navigate("/doctors/Gastroenterologist")}
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600 rounded transition-all cursor-pointer ${
-              speciality === "Gastroenterologist" ? "bg-indigo-100 text-black" : ""
-            }`}
-          >
-            Gastroenterologist
-          </p>
+    <div className="px-4 sm:px-8 lg:px-16 py-6 bg-gray-50 min-h-screen">
+      <p className="text-gray-600 text-lg mb-4">
+        Browse through our trusted doctors and their specialties
+      </p>
+
+      <div className="flex flex-col sm:flex-row items-start gap-6">
+        {/* Filter Toggle for Mobile */}
+        <button
+          onClick={() => {
+            setShowFilter((prev) => !prev);
+          }}
+          className={`py-2 px-4 border rounded-lg text-sm font-medium shadow-sm sm:hidden ${
+            showFilter ? "bg-indigo-500 text-white" : "bg-white text-gray-700"
+          }`}
+        >
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </button>
+
+        {/* Sidebar Filters */}
+        <div
+          className={`flex-col gap-3 text-sm font-medium text-gray-700 ${
+            showFilter ? "flex" : "hidden sm:flex"
+          }`}
+        >
+          {[
+            "General physician",
+            "Gynecologist",
+            "Dermatologist",
+            "Pediatricians",
+            "Neurologist",
+            "Gastroenterologist",
+          ].map((spec) => (
+            <p
+              key={spec}
+              onClick={() => navigate(`/doctors/${spec}`)}
+              className={`w-[94vw] sm:w-48 px-4 py-2 border rounded-lg cursor-pointer shadow-sm hover:shadow-md hover:bg-indigo-50 transition-all duration-200 ${
+                speciality === spec
+                  ? "bg-indigo-100 text-indigo-700 border-indigo-300"
+                  : "bg-white border-gray-300"
+              }`}
+            >
+              {spec}
+            </p>
+          ))}
         </div>
-        <div className="w-full grid grid-cols-auto gap-4 gap-y-6">
+
+        {/* Doctor Cards */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filterDoc.map((item, index) => {
             return (
               <div
                 onClick={() => navigate(`/appointment/${item._id}`)}
-                className="border border-blue-200 rounded-xl cursor-pointer overflow-hidden hover:-translate-y-2 transition-all duration-500"
                 key={index}
+                className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
               >
-                <img className="bg-blue-50" src={item.image} alt="" />
-                <div className="p-4">
-                <div className={`flex items-center gap-2 text-sm text-center ${item.available ? 'text-green-500' : 'text-red-500'} `}>
-                            <p className={`w-2 h-2 ${item.available ? 'bg-green-500' :'bg-red-500' }  rounded-full `}></p><p>{item.available ? 'Available' : 'Not Available'}</p>
-
-                        </div>
-                  <p className="text-gray-900 text-lg font-medium">
+                <img
+                  className="w-full h-56 object-cover bg-blue-50"
+                  src={item.image}
+                  alt={item.name}
+                />
+                <div className="p-5">
+                  <div
+                    className={`flex items-center gap-2 text-sm font-medium mb-2 ${
+                      item.available ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    <span
+                      className={`w-2.5 h-2.5 rounded-full ${
+                        item.available ? "bg-green-500" : "bg-red-500"
+                      }`}
+                    ></span>
+                    {item.available ? "Available" : "Not Available"}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">
                     {item.name}
-                  </p>
-                  <p className="text-gray-600 text-sm">{item.speciality}</p>
+                  </h3>
+                  <p className="text-gray-500">{item.speciality}</p>
                 </div>
               </div>
             );

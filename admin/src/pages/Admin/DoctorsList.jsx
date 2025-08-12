@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { AdminContext } from '../../context/adminContext';
-import axios from 'axios';
+import React, { useContext, useEffect } from "react";
+import { AdminContext } from "../../context/adminContext";
+import axios from "axios";
 
 const DoctorsList = () => {
-  const { doctors, getAllDoctors, atoken, changeAvailibility,backendUrl } = useContext(AdminContext);
+  const { doctors, getAllDoctors, atoken, changeAvailibility, backendUrl } =
+    useContext(AdminContext);
 
   // Fetch all doctors when the token is available
   useEffect(() => {
@@ -12,65 +13,68 @@ const DoctorsList = () => {
     }
   }, [atoken]);
 
-const removeDocHandler = async (docId) => {
-  try {
-    // console.log(docId);
-    // console.log(atoken);
-    
-    const docDetails = await axios.delete(
-      `${backendUrl}/api/admin/remove-doctor/${docId}`,
-      {
-        headers: {
-          atoken
-        },
-      
-      }
-    );
-  //  console.log("docDetails:"/ 
-    
-    console.log("Doctor removed:", docDetails.data.msg);
-     await getAllDoctors();
-  } catch (error) {
-    console.error("Failed to remove doctor:", error.response?.data || error.message);
-  }
-}
-
-
-
-
-  // Debugging log to monitor doctor data changes
-  useEffect(() => {
-    console.log('Updated doctors data:', doctors);
-  }, [doctors]);
+  const removeDocHandler = async (docId) => {
+    try {
+      await axios.delete(`${backendUrl}/api/admin/remove-doctor/${docId}`, {
+        headers: { atoken },
+      });
+      await getAllDoctors();
+    } catch (error) {
+      console.error(
+        "Failed to remove doctor:",
+        error.response?.data || error.message
+      );
+    }
+  };
 
   return (
-    <div className="m-5 max-h-[90vh] overflow-y-scroll">
-      <h1 className="text-lg font-medium">All Doctors</h1>
-      <div className="w-full flex flex-wrap gap-4 pt-5 gap-y-6">
+    <div className="px-4 sm:px-8 lg:px-16 py-6 bg-gray-50 min-h-screen">
+      <h1 className="text-lg font-medium mb-4">All Doctors</h1>
+
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {doctors && doctors.length > 0 ? (
           doctors.map((item, index) => (
-            <div className="border border-indigo-200 rounded-xl max-w-56 overflow-hidden" key={index}>
-              <img className="bg-indigo-50 hover:bg-primary transition-all duration-500" src={item.image} alt="" />
-              <div className="p-4">
-                <p className="text-neutral-80 text-lg font-medium">{item.name}</p>
-                <p className="text-zinc-600 text-sm">{item.speciality}</p>
-                <div className='flex'>
-
-                <div className="mt-2 flex items-center gap-1 text-sm">
-                  {/* Ensure proper handling of availability toggle */}
-                  <input
-                    className='cursor-pointer'
-                    onChange={() => changeAvailibility(item._id)} // Call the API function when toggling
-                    type="checkbox"
-                    checked={item.available || false} // Ensure default boolean value
+            <div
+              key={index}
+              className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            >
+              <img
+                className="w-full h-56 object-cover bg-blue-50"
+                src={item.image}
+                alt={item.name}
+              />
+              <div className="p-5 flex flex-col justify-between h-[calc(100%-14rem)]">
+                <div>
+                  <div
+                    className={`flex items-center gap-2 text-sm font-medium mb-2 ${
+                      item.available ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      className="cursor-pointer"
+                      checked={item.available || false}
+                      onChange={() => changeAvailibility(item._id)}
                     />
-                  <p>Available</p>
+                    <span
+                      className={`w-2.5 h-2.5 rounded-full ${
+                        item.available ? "bg-green-500" : "bg-red-500"
+                      }`}
+                    ></span>
+                    {item.available ? "Available" : "Not Available"}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 truncate">
+                    {item.name}
+                  </h3>
+                  <p className="text-gray-500 truncate">{item.speciality}</p>
                 </div>
-                <div className='pl-3'>
-                  <button onClick={()=>removeDocHandler(item._id)} className='cursor-pointer text-sm p-1 mt-2  bg-red-300  rounded transition hover:scale-105'>Remove</button>
-                </div>
-                    </div>
-                
+
+                <button
+                  onClick={() => removeDocHandler(item._id)}
+                  className="mt-4 w-full py-2 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all hover:scale-102 cursor-pointer duration-200"
+                >
+                  Remove
+                </button>
               </div>
             </div>
           ))

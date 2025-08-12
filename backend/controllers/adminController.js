@@ -95,7 +95,7 @@ const loginAdmin = async (req,res)=>{
 
 }
 
-//APi to get all doctors list for admin panel
+//API to get all doctors list for admin panel
 const allDoctors = async (req, res) => {
     try {
         const doctors = await doctorModel.find({}).select('-password'); // exclude passwords because obvious security reasons
@@ -149,7 +149,7 @@ const appointmentCancel = async (req,res)=>{
     slots_booked[slotDate] = slots_booked[slotDate].filter(slot=>slot!=slotTime)
     await doctorModel.findByIdAndUpdate(docId,{slots_booked})
     
-    res.json({success:true,msg:"appointment cancelled"})
+    res.json({success:true,msg:"Appointment cancelled"})
     
     }
     catch(e){
@@ -189,11 +189,11 @@ res.json({success:true,dashData})
 const removeDoctor = async (req, res) => {
   try {
     const docId = req.params.id;
-    console.log("Deleting docId:", docId);
+    // console.log("Deleting docId:", docId);
 
     const status = await doctorModel.deleteOne({ _id: docId });
 
-    console.log(status);
+    // console.log(status);
     
     res.json({
       success: true,

@@ -51,7 +51,7 @@ const Footer = () => {
         {/* ---------  Copyright text  ----- */}
         <hr />
         <p className="text-gray-800 py-5 text-sm text-center">
-          Copyright 2025@ Doctors - All Rights Reserved.
+          Copyright 2025@ DoctorEasy - All Rights Reserved.
         </p>
       </div>
     </div>

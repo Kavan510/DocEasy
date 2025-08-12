@@ -5,6 +5,9 @@ import { assets } from '../assets/assets_frontend/assets';
 import RelatedDoctors from '../components/RelatedDoctors';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+
+
+
 const Appointment = () => {
 const {docId} = useParams();
 const {doctors,currencySymbol,backendUrl,token,getDoctorsData} = useContext(AppContext)
@@ -103,7 +106,7 @@ try{
   const {data} = await axios.post(backendUrl+'/api/user/book-appointment',{docId,slotDate,slotTime},{headers:{token}})
   if(data.success){
     toast.success(data.msg)
-    getDoctorsData() //why we using this??
+    getDoctorsData() 
     navigate('/my-appointments')
   }
   else{

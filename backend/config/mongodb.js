@@ -1,14 +1,9 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
+const connectDB = async () => {
+  await mongoose.connect(`${process.env.MONGODB_URL}`).then(() => {
+    console.log("Database is connected");
+  });
+};
 
-const connectDB = async ()=>{
-
-await mongoose.connect(`${process.env.MONGODB_URL}`)
-.then(()=>{console.log("Database is connected")
-
-})
-
-}
-
-
-export default connectDB
+export default connectDB;

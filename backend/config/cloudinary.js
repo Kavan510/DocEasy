@@ -1,7 +1,5 @@
 import {v2 as cloudinary} from 'cloudinary'
 
-
-// aa function samjvu ek vaar sarkhu 
  
 const connectCloudinary = async ()=>{
     cloudinary.config({

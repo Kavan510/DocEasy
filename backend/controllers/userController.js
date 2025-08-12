@@ -24,7 +24,7 @@ if(!validator.isEmail(email)) {
 }
 
 if(password.length<8 ){
-    return res.json({success:false,msg:"enter a strong password"})
+    return res.json({success:false,msg:"Enter a strong password"})
 
 }
 
@@ -159,7 +159,7 @@ const updateProfile = async (req, res) => {
 };
 
 
-//API to book an appointment aa function samjvu dhan thi
+//API to book an appointment 
 
 
  const bookAppointment = async (req,res)=>{
@@ -223,7 +223,7 @@ catch(e){
  }
 
 
- // API to get user appointmet for fronend 
+ // API to get user appointment for frontend 
 
  const listAppointment = async (req,res)=>{
     try{
@@ -265,7 +265,7 @@ let slots_booked = doctorData.slots_booked;
 slots_booked[slotDate] = slots_booked[slotDate].filter(slot=>slot!=slotTime)
 await doctorModel.findByIdAndUpdate(docId,{slots_booked})
 
-res.json({success:true,msg:"appointment cancelled"})
+res.json({success:true,msg:"Appointment cancelled"})
 
 }
 catch(e){
